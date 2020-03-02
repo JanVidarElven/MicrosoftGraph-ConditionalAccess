@@ -1,0 +1,42 @@
+{
+    "displayName": "<OrgName> baseline policy: End user protection",
+    "state": "disabled",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [
+            "medium"
+        ],
+        "clientAppTypes": [],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "All"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [
+                "<object-id-break-glass-admin>",
+                "<object-id-on-premises-sync-account>"
+            ],
+            "includeGroups": [],
+            "excludeGroups": [],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "mfa"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}
