@@ -50,6 +50,18 @@ This repository explains how to deploy the templates this way:
 3. To verify permissions, try a GET query for https://graph.microsoft.com/beta/conditionalAccess/policies. You should get a response where any existing CA policies are listed.
 4. Then, for each of the provided templates, change to a POST query, using the same URI https://graph.microsoft.com/beta/conditionalAccess/policies, and use the Request Body from the provided templates one at a time. Remember to change the Display Name of the policy before you click Post, and either replace Object Id's for excluded accounts, or remove this value from the Request Body if you want to manually add them in the Portal GUI at a later time.
 
-### Deploy the custom templates using PowerShell (coming soon)
+### Deploy the custom templates using PowerShell and Graph
 
-To deploy using PowerShell and Graph, do the following....
+To deploy using PowerShell and Microsoft Graph, you will first need to create an App Registration in your tenant, or use an existing if you have used PowerShell and Microsoft Graph before. Follow these steps:
+
+1. Log in as a Global Administrator in your tenant, and create a new App Registration.
+2. Type a Display Name and select Single Tenant for account types.
+3. Leave Redirect URI blank for now, and click Register.
+4. After registering, go to Authentication section, click Add a platform and select Mobile and desktop applications, and select to add the Redirect URI for Native client, https://login.microsoftonline.com/common/oauth2/nativeclient. 
+5. Also, under Advanced select Yes to treat application as public client. This is required for using device code flow, which I will use in my PowerShell script.
+6. Then, under API permissions, select to Add a permission, select Microsoft Graph, Delegated permissions, and add Policy.Read.All and Policy.ReadWrite.ConditionalAccess.
+7. Note! You *do not need* to Grant Admin Consent for your entire organization. Delegated admins will consent themselves under the Device Code flow.
+8. Under Overview, copy the Client ID/Application ID of the App Registration, you will need this in the PowerShell script.
+
+You are now ready to run the PowerShell script, see ConditionalAccess_GraphPowerShell.ps1 for details. 
+
