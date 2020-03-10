@@ -41,7 +41,7 @@ Note also that the End User Protection JSON template require MFA when Sign-In Ri
 This repository explains how to deploy the templates this way:
 
 * Using Graph Explorer
-* Using PowerShell (coming soon)
+* Using PowerShell
 
 ### Deploy the custom templates using Graph Explorer
 
